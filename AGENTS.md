@@ -7,7 +7,7 @@
 ## 1. 项目结构
 
 ```text
-metasequoiaime-setup/
+metasequoiaime-setup-change/
 ├── AGENTS.md                        # 本文件（AI 专用上下文与约束说明）
 ├── README.md                        # 人类用户使用说明
 ├── 一键安装.bat                      # 入口脚本：自动 UAC 提权并调用 install.ps1
