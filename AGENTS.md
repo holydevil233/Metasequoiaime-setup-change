@@ -24,15 +24,15 @@ metasequoiaime-setup-change/
 ## 2. 运行时架构与系统路径
 
 - **输入法版本**：MetasequoiaIME `v0.13.2`（纯 TSF 架构）
-  - 服务端：`C:\Program Files\metasequoiaime\server\MetasequoiaImeServer.exe`
-  - 守护进程：`C:\Program Files\metasequoiaime\server\MetasequoiaImeWatchdog.exe`（由计划任务 `Metasequoia IME Watchdog` 拉起）
-  - TSF DLL：`C:\Windows\system32\IME\MetasequoiaIME\msime_v0.13.2\MetasequoiaImeTsf.dll`（及 `SysWow64` 对应路径）
+  - 服务端：`%ProgramFiles%\metasequoiaime\server\MetasequoiaImeServer.exe`
+  - 守护进程：`%ProgramFiles%\metasequoiaime\server\MetasequoiaImeWatchdog.exe`（由计划任务 `Metasequoia IME Watchdog` 拉起）
+  - TSF DLL：`%SystemRoot%\system32\IME\MetasequoiaIME\msime_v0.13.2\MetasequoiaImeTsf.dll`（及 `SysWow64` 对应路径）
   - TSF CLSID：`{E3062E9A-D834-4637-8958-ED8CFA427D01}`，Profile：`{4D59B1B4-D503-44AE-9259-BAD9BB2778AB}`，LangID：`0x0804`
   - 命名管道：`\\.\pipe\FanyImeNamedPipe`、`\\.\pipe\FanyImeToTsfNamedPipe` 等
 - **用户数据目录**：`%LOCALAPPDATA%\metasequoiaime\`
   - 配置文件：`%LOCALAPPDATA%\metasequoiaime\config.toml`
   - 诊断日志：`%LOCALAPPDATA%\metasequoiaime\logs\水杉IME诊断日志-{server,tsf}-*.log`
-- **按键映射依赖**：AutoHotkey v2（`C:\Program Files\AutoHotkey\v2\AutoHotkey64.exe`）
+- **按键映射依赖**：AutoHotkey v2（`%ProgramFiles%\AutoHotkey\v2\AutoHotkey64.exe`）
   - 开机自启：`%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\Metasequoia Caps.ahk`
 
 ---
@@ -53,7 +53,7 @@ metasequoiaime-setup-change/
 - 在 AI 工具的命令沙箱/子终端中直接用 `Start-Process` 启动 `AutoHotkey64.exe`，进程可能会绑定到当前终端的 Job Object 并在命令结束时被一并杀死。
 - 如需在自动化脚本/工具回合中持久化启动 `AutoHotkey64.exe`，请使用 WMI `Win32_Process.Create`（`Invoke-CimMethod`）使其脱离当前终端 Job Object：
   ```powershell
-  $cmd = '"C:\Program Files\AutoHotkey\v2\AutoHotkey64.exe" "C:\Users\Administrator\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\Metasequoia Caps.ahk"'
+  $cmd = "`"$env:ProgramFiles\AutoHotkey\v2\AutoHotkey64.exe`" `"$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\Metasequoia Caps.ahk`""
   Invoke-CimMethod -ClassName Win32_Process -MethodName Create -Arguments @{CommandLine=$cmd}
   ```
 
