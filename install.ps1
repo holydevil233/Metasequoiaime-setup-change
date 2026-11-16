@@ -1,4 +1,4 @@
-﻿#Requires -Version 5.1
+#Requires -Version 5.1
 <#
 .SYNOPSIS
     水杉输入法（MetasequoiaIME v0.13.2）+ 自定义配置 + CapsLock 切换脚本 一键安装工具
@@ -11,9 +11,9 @@ $ImeVersion = "v0.13.2"
 $ImeDownloadUrl = "https://github.com/metasequoiaime/msime-windows/releases/download/v0.13.2/MetasequoiaIME_Setup_v0.13.2.exe"
 $AhkDownloadUrl = "https://www.autohotkey.com/download/ahk-v2.exe"
 
-$ImeServerPath = "C:\Program Files\metasequoiaime\server\MetasequoiaImeServer.exe"
-$ImeWatchdogPath = "C:\Program Files\metasequoiaime\server\MetasequoiaImeWatchdog.exe"
-$AhkExePath = "C:\Program Files\AutoHotkey\v2\AutoHotkey64.exe"
+$ImeServerPath = Join-Path $env:ProgramFiles "metasequoiaime\server\MetasequoiaImeServer.exe"
+$ImeWatchdogPath = Join-Path $env:ProgramFiles "metasequoiaime\server\MetasequoiaImeWatchdog.exe"
+$AhkExePath = Join-Path $env:ProgramFiles "AutoHotkey\v2\AutoHotkey64.exe"
 
 $LocalDataDir = Join-Path $env:LOCALAPPDATA "metasequoiaime"
 $StartupDir = Join-Path $env:APPDATA "Microsoft\Windows\Start Menu\Programs\Startup"
